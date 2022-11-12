@@ -31,6 +31,7 @@ class Controller_Signup extends Controller
             ->add_rule('required')
             ->add_rule('min_length', self::PASS_LENGTH_MIN)
             ->add_rule('max_length', self::PASS_LENGTH_MAX);
+
         $form->add('password_re', 'Password（再入力）', array('type'=>'password', 'placeholder'=>'パスワード（再入力）'))
             // match_fieldをつける場合は必ず他のadd_ruleの前につける
             ->add_rule('match_field', 'password')
@@ -73,7 +74,6 @@ class Controller_Signup extends Controller
         $view->set('footer',View::forge('template/footer'));
         $view->set_global('signupform', $form->build(''), false);
         $view->set_global('error', $error);
-        $view->set_global('formData', $formData);
 
         // レンダリングした HTML をリクエストに返す
         return $view;
